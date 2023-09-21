@@ -15,12 +15,12 @@
                                 <option value="1">X RpL</option>
                             </select>
                             <small class="form-text text-danger"><?= form_error('kelas_id'); ?></small>
-                        </div>
+                        </div> 
                         <div class="form-group">
                             <label for="mapel_id">Mapel</label>
                             <select name="mapel_id" id="mapel_id" class="form-control">
                                 <?php foreach ($mapel as $m) : ?>
-                                    <?php if ($m == $idrpl['mapel_id']) : ?>
+                                    <?php if ($m['nama_mapel'] == $idrpl['nama_mapel']) : ?>
                                         <option value="<?= $m['mapel_id']; ?>" selected><?= $m['nama_mapel']; ?></option>
                                     <?php else : ?>
                                         <option value="<?= $m['mapel_id']; ?>"><?= $m['nama_mapel']; ?></option>
@@ -33,9 +33,9 @@
                             <label for="guru_id">Guru</label>
                             <select name="guru_id" id="guru_id" class="form-control">
                                 <?php foreach ($guru as $g) : ?>
-                                    <?php if ($g == $idrpl['guru_id']) : ?>
+                                    <?php if( $g['nama_guru'] == $idrpl['nama_guru']) : ?>
                                         <option value="<?= $g['guru_id']; ?>" selected><?= $g['nama_guru']; ?></option>
-                                    <?php else : ?>
+                                        <?php else : ?>
                                         <option value="<?= $g['guru_id']; ?>"><?= $g['nama_guru']; ?></option>
                                     <?php endif; ?>
                                 <?php endforeach; ?>

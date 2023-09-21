@@ -31,7 +31,7 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="<?= base_url('auth'); ?>">Already have an account? Login!</a>
+                                <a class="small" href="<?= base_url('auth'); ?>">Sudah Punya Akun lo? Sana Balik!</a>
                             </div>
                         </div>
                     </div>

@@ -5,19 +5,18 @@
 
     <?= $this->session->flashdata('message'); ?>
 
+
+
     <div class="row">
-        <div class="col-lg">
+        <div class="col-md">
 
-
-            <form method="post" class="col-lg mb-3">
-                <a href="" class="btn btn-dark" data-toggle="modal" data-target="#newAgenda">Tambahkan Agenda Baru</a>
-                <div class="form-group float-left">
-                </div>
-                <div class="form-group float-right">
-                    <input type="submit" class="btn btn-dark ml-2" id="filter" name="filter" value="filter">
-                </div>
-                <div class="form-group float-right">
-                    <input type="date" class="form-control" id="tanggal" name="tanggal">
+            <form action="<?= base_url('agenda/rpl'); ?>" method="post">
+                <a href="" class="btn btn-dark mb-3" data-toggle="modal" data-target="#newAgenda">Tambahkan Agenda Baru</a>
+                <div class="input-group mb-3 col-md-3 float-right">
+                    <input type="date" class="form-control" placeholder="" name="keyword" autocomplete="off">
+                    <div class="input-group-append">
+                        <input class="btn btn-dark" type="submit" name="cari">
+                    </div>
                 </div>
             </form>
 
@@ -30,15 +29,13 @@
                         <th scope="col">Guru</th>
                         <th scope="col">Materi</th>
                         <th scope="col">Siswa Absensi</th>
-                        <th>Action</th>
+                        <?php if ($user['role_id'] == 1) : ?>
+                            <th>Action</th>
+                        <?php else : ?>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <?php if ($_POST['filter']) : ?>
-                        
-                    <?php else : ?>
-
-                    <?php endif; ?> -->
                     <?php $i = 1; ?>
                     <?php foreach ($rpl as $r) : ?>
                         <tr>
@@ -48,10 +45,13 @@
                             <td><?= $r['nama_guru'] ?></td>
                             <td><?= $r['materi'] ?></td>
                             <td><?= $r['siswa_absensi'] ?></td>
-                            <td>
-                                <a href="<?= base_url('agenda/gantiRpl/'); ?><?= $r['jam']; ?>" class="badge badge-success">edit</a>
-                                <a href="<?= base_url('agenda/hapusRpl/'); ?><?= $r['jam']; ?>" class="badge badge-danger" onclick="return confirm('yakin hapus niee?');">delete</a>
-                            </td>
+                            <?php if ($user['role_id'] == 1) : ?>
+                                <td>
+                                    <a href="<?= base_url('agenda/gantiRpl/'); ?><?= $r['jam']; ?>" class="badge badge-success">edit</a>
+                                    <a href="<?= base_url('agenda/hapusRpl/'); ?><?= $r['jam']; ?>" class="badge badge-danger" onclick="return confirm('yakin hapus niee?');">delete</a>
+                                </td>
+                            <?php else : ?>
+                            <?php endif; ?>
                         </tr>
                         <?php $i++; ?>
                     <?php endforeach ?>
@@ -80,10 +80,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <select name="kelas_id" id="kelas_id" class="form-control">
-                            <option value="">Pilih Kelas</option>
-                            <?php foreach ($kelas as $k) : ?>
-                                <option value="<?= $k['kelas_id']; ?>"><?= $k['nama_kelas']; ?></option>
-                            <?php endforeach; ?>
+                            <option value="1">X RpL</option>
                         </select>
                         <small class="form-text text-danger"><?= form_error('kelas_id'); ?></small>
                     </div>

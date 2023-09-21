@@ -21,11 +21,16 @@ class Agenda extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['username' =>
         $this->session->userdata('username')])->row_array();
 
-        $data['rpl'] = $this->agenda->getAgendaRpl();
-
         $data['kelas'] = $this->db->get('kelas')->result_array();
         $data['mapel'] = $this->db->get('mapel')->result_array();
         $data['guru'] = $this->db->get('guru')->result_array();
+        
+        // if ($this->input->post('cari')) {
+        //     $data['keyword'] = $this->input->post('keyword');
+        // } else {
+        //     $data['keyword'] = null;
+        // }
+        $data['rpl'] = $this->agenda->getAgendaRpl();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -34,14 +39,7 @@ class Agenda extends CI_Controller
             $this->load->view('agenda/rpl/x_rpl/index', $data);
             $this->load->view('templates/footer');
         } else {
-            $data = [
-                'kelas_id' => $this->input->post('kelas_id'),
-                'mapel_id' => $this->input->post('mapel_id'),
-                'guru_id' => $this->input->post('guru_id'),
-                'materi' => $this->input->post('materi'),
-                'siswa_absensi' => $this->input->post('siswa_absensi')
-            ];
-            $this->db->insert('jurusan_rpl', $data);
+            $this->agenda->tambahDataRpl();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selesai Ditambahkan</div>');
             redirect('agenda/rpl');
         }
@@ -95,7 +93,7 @@ class Agenda extends CI_Controller
         $data['kelas'] = $this->db->get('kelas')->result_array();
         $data['mapel'] = $this->db->get('mapel')->result_array();
         $data['guru'] = $this->db->get('guru')->result_array();
-        
+
         $data['idrpl'] = $this->agenda->getIdRpl($jam);
 
         if ($this->form_validation->run() == false) {
