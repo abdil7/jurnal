@@ -31,7 +31,7 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="<?= base_url('auth'); ?>">Sudah Punya Akun lo? Sana Balik!</a>
+                                <a class="small" href="<?= base_url('guru'); ?>">Kembali</a>
                             </div>
                         </div>
                     </div>

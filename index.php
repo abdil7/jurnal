@@ -1,4 +1,3 @@
-apa
 <?php
 /**
  * CodeIgniter

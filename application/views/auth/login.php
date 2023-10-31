@@ -12,7 +12,7 @@
                         <div class="col-lg">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Login dulu ga si</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Diharapkan Login</h1>
                                 </div>
 
                                 <?= $this->session->flashdata('message'); ?>
@@ -31,9 +31,6 @@
                                     </button>
                                 </form>
                                 <hr>
-                                <div class="text-center">
-                                    <a class="small" href="<?= base_url('auth/registration'); ?>">Tidak punya akun?, ayo buruan bikin</a>
-                                </div>
                             </div>
                         </div>
                     </div>

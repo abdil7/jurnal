@@ -9,7 +9,7 @@
                     <div class="card" style="width: 12rem;">
                         <div class="card-body">
                             <h4 class="card-title">MP / OTKP</h4>
-                            <a href="<?= base_url('agenda/mp/'); ?>" class="btn btn-dark">Pilih Jurusan iniiii</a>
+                            <a href="<?= base_url('jurusan/mp'); ?>" class="btn btn-dark">Pilih Jurusan iniiii</a>
                         </div>
                     </div>
                 </div>

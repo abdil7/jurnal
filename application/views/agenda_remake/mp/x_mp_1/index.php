@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">X RPL</h1>
+    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
     <?= $this->session->flashdata('message'); ?>
 
@@ -10,12 +10,12 @@
     <div class="row">
         <div class="col-md">
 
-            <form action="<?= base_url('agenda/rpl'); ?>" method="post">
+            <form action="<?= base_url('agenda_remake'); ?>" method="post">
                 <a href="" class="btn btn-dark mb-3" data-toggle="modal" data-target="#newAgenda">Tambahkan Agenda Baru</a>
                 <div class="input-group mb-3 col-md-3 float-right">
-                    <input type="date" class="form-control" placeholder="" name="keyword" autocomplete="off">
+                    <input type="date" class="form-control" name="keyword" required autocomplete="off">
                     <div class="input-group-append">
-                        <input class="btn btn-dark" type="submit" name="cari">
+                        <input class="btn btn-dark" type="submit" name="cari" value="Pilihh">
                     </div>
                 </div>
             </form>
@@ -23,7 +23,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Jam</th>
                         <th scope="col">Kelas</th>
                         <th scope="col">Mapel</th>
                         <th scope="col">Guru</th>
@@ -36,10 +36,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($rpl as $r) : ?>
+
+                    <!-- <?php $i = 1; ?> -->
+                    <?php foreach ($agenda as $r) : ?>
                         <tr>
-                            <th scope="row"><?= $i; ?></th>
+                            <!-- <th scope="row"><?= $i; ?></th> -->
+                            <td><?= $r['jam'] ?></td>
                             <td><?= $r['nama_kelas'] ?></td>
                             <td><?= $r['nama_mapel'] ?></td>
                             <td><?= $r['nama_guru'] ?></td>
@@ -47,13 +49,13 @@
                             <td><?= $r['siswa_absensi'] ?></td>
                             <?php if ($user['role_id'] == 1) : ?>
                                 <td>
-                                    <a href="<?= base_url('agenda/gantiRpl/'); ?><?= $r['jam']; ?>" class="badge badge-success">edit</a>
-                                    <a href="<?= base_url('agenda/hapusRpl/'); ?><?= $r['jam']; ?>" class="badge badge-danger" onclick="return confirm('yakin hapus niee?');">delete</a>
+                                    <a href="<?= base_url('agenda_remake/ganti/'); ?><?= $r['id']; ?>" class="badge badge-success">edit</a>
+                                    <a href="<?= base_url('agenda_remake/hapusData/'); ?><?= $r['id']; ?>" class="badge badge-danger" onclick="return confirm('yakin hapus niee?');">delete</a>
                                 </td>
                             <?php else : ?>
                             <?php endif; ?>
                         </tr>
-                        <?php $i++; ?>
+                        <!-- <?php $i++; ?> -->
                     <?php endforeach ?>
                 </tbody>
             </table>
@@ -76,11 +78,25 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('agenda/rpl'); ?>" method="post">
+            <form action="<?= base_url('agenda_remake'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
+                        <select name="jam" id="jam" class="form-control">
+                            <option value="">Jam Berapa Anda Mengajar?</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                        <small class="form-text text-danger"><?= form_error('jam'); ?></small>
+                    </div>
+                    <div class="form-group">
                         <select name="kelas_id" id="kelas_id" class="form-control">
-                            <option value="1">X RpL</option>
+                            <option value="4">XII RPL 2</option>
                         </select>
                         <small class="form-text text-danger"><?= form_error('kelas_id'); ?></small>
                     </div>
@@ -109,6 +125,7 @@
                     <div class="form-group">
                         <select class="form-control" id="siswa_absensi" name="siswa_absensi">
                             <option value="">Jumlah Siswa Gamasuk</option>
+                            <option value="-">Masuk Semua</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>

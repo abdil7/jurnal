@@ -53,7 +53,7 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Jurusan</h6>
-                            <a class="collapse-item" href="#">MP</a>
+                            <a class="collapse-item" href="<?= base_url('agenda_remake'); ?>">MP</a>
                             <a class="collapse-item" href="#">AK</a>
                             <a class="collapse-item" href="#">LP</a>
                             <a class="collapse-item" href="#">BD</a>

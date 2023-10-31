@@ -6,9 +6,10 @@
     <?= $this->session->flashdata('message'); ?>
 
 
-
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md">
+
+            <a class="btn btn-dark mb-3 ml-2" href="<?= base_url('auth/registration'); ?>">Bikin Akun Baru!!</a>
 
             <table class="table table-hover">
                 <thead>
@@ -17,7 +18,7 @@
                         <th scope="col">Nama Guru</th>
                         <th scope="col">Username</th>
                         <th scope="col">Password</th>
-                        <!-- <th>Action</th> -->
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,10 +29,9 @@
                             <td><?= $g['name'] ?></td>
                             <td><?= $g['username'] ?></td>
                             <td><?= $g['password'] ?></td>
-                            <!-- <td>
-                                <a href="<?= base_url('agenda/gantiguru/'); ?><?= $g['jam']; ?>" class="badge badge-success">edit</a>
-                                <a href="<?= base_url('agenda/hapusguru/'); ?><?= $g['jam']; ?>" class="badge badge-danger" onclick="return confirm('yakin hapus niee?');">delete</a>
-                            </td> -->
+                            <td>
+                                <a href="<?= base_url('guru/hapusGuru/'); ?><?= $g['id']; ?>" class="badge badge-danger" onclick="return confirm('yakin hapus niee?');">delete</a>
+                            </td>
                         </tr>
                         <?php $i++; ?>
                     <?php endforeach ?>
